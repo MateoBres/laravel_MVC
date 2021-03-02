@@ -200,9 +200,8 @@ class ProductController extends Controller
      */
     public function destroy(Request $request)
     {
-        //delete product by Id (find(id)+delete())
-        $Product = Product::find($request->idProduct);
-        $Product->delete();
+        //delete product by Id
+        Product::destroy($request->idProduct);
         //redirect + message
         return redirect('/adminProducts')
             ->with('message', 'Product: '. $request->prdName. ' deleted correctly');
