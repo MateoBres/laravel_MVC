@@ -112,7 +112,7 @@ class ProductController extends Controller
         $Product->prdImage = $prdImage;
         //save data
         $Product->save();
-        //return query + message
+        //redirect + message
         return redirect('/adminProducts')
                 ->with('message', 'Product: '. $request->prdName. ' added correctly');
     }
@@ -176,7 +176,7 @@ class ProductController extends Controller
         $Product->prdImage = $prdImage;
         //save data
         $Product->save();
-        //return a query + message
+        //redirect + message
         return redirect('/adminProducts')
                 ->with('message', 'Product: '. $request->prdName. ' modified correctly');
     }
@@ -200,11 +200,10 @@ class ProductController extends Controller
      */
     public function destroy(Request $request)
     {
-        //$prdName = $request->prdName;
-        //delete product by Id
+        //delete product by Id (find(id)+delete())
         $Product = Product::find($request->idProduct);
         $Product->delete();
-        //return a query + message
+        //redirect + message
         return redirect('/adminProducts')
             ->with('message', 'Product: '. $request->prdName. ' deleted correctly');
     }
